@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>拼图游戏</title>
+    <link rel="stylesheet" href="test.css">
+    <style>
+        body,html{ padding: 0px; margin: 0px; background:#eee; }
+        #gameDiv{ width:460px; height: 460px; margin: 20px auto; background: #F9F9F9; padding: 1px 1px;position:relative; }
+        #maskBox{ opacity: 0.5; display: block;}
+    </style>
+    <script src="imgGame.js"></script>
+    <script>
+        window.onload=function(){
+            //生成函数
+            gameInfo.init();
+        }
+
+    </script>
+</head>
+<body>
+<div id="gameDiv"></div>
+</body>
+</html>
