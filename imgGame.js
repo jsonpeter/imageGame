@@ -2,16 +2,16 @@
  * Created by jsonpeter on 2015/8/13.
  */
 (function($g){
-    //ÓÎÏ·ÅäÖÃ
-     setting={
+    //æ¸¸æˆé…ç½®
+    var setting={
          gameConfig:{
                url:"1.jpg",
                 id:"gameDiv",
-              //Éú³É¹æ¸ñºá4 ×İ4
+              //ç”Ÿæˆè§„æ ¼æ¨ª4 çºµ4
                 size:"4*4",
-                //Ã¿¸öÔªËØµÄ¼ä¸ô
+                //æ¯ä¸ªå…ƒç´ çš„é—´éš”
                 margin:1,
-               //ÍÏ¶¯Ê±ºò¿éÍ¸Ã÷¶È
+               //æ‹–åŠ¨æ—¶å€™å—é€æ˜åº¦
                opacity:0.8
         },
          setElement:{
@@ -30,7 +30,7 @@
                 animate:0.8
             }
     };
-    //ÔªËØÉú³É²ÎÊı
+    //å…ƒç´ ç”Ÿæˆå‚æ•°
     var _sg= setting.gameConfig;
     var _st= setting.setElement;
     var gameInfo=function(){};
@@ -40,20 +40,20 @@
             this.eventHand();
         },
         sortObj:{
-            rightlist:[], //ÕıÈ·µÄÅÅĞò
-            romdlist:[]   //´òÂÒºóµÄÅÅĞò
+            rightlist:[], //æ­£ç¡®çš„æ’åº
+            romdlist:[]   //æ‰“ä¹±åçš„æ’åº
         },
         creatObj: function () {
             _sg.boxObj = document.getElementById(_sg.id)||"";
-            //³ß´ç×Ô¶¯»ñÈ¡
+            //å°ºå¯¸è‡ªåŠ¨è·å–
             var _size =  _sg.size.split('*') || [0, 0];
-            //¼ÆËãµ¥¸ödivµÄ¸ß¿í
+            //è®¡ç®—å•ä¸ªdivçš„é«˜å®½
             var w = Math.floor(_sg.boxObj.offsetWidth / _size[0]);
             var h = Math.floor(_sg.boxObj.offsetHeight / _size[1]);
-            //Í¼Æ¬Éú³Édiv
+            //å›¾ç‰‡ç”Ÿæˆdiv
             var _size = _sg.size.split('*') || [0, 0];
             var wt=_size[0],hg=_size[1];
-            //´´½¨Ò»¸öËØ×é²¢ÅÅĞò´òÉ¢
+            //åˆ›å»ºä¸€ä¸ªç´ ç»„å¹¶æ’åºæ‰“æ•£
             var sortList=[];
             for(var a=0;a<wt*hg;a++){
                 sortList.push(a);
@@ -66,7 +66,7 @@
                 var _s = 0;
                 for (; _s < hg; _s++)
                 {
-                    //¸³ÖµËæ»ú´òÉ¢ºóµÄid
+                    //èµ‹å€¼éšæœºæ‰“æ•£åçš„id
                     _st.id =sortList[sid++];
                     _st.display = "block";
                     _st.float = "left";
@@ -89,11 +89,11 @@
             eachBox(_arrySort,function(d){
                 _tmp.push(parseInt(_arrySort[d].id));
             });
-            //ÅÅĞòĞÂÊı×é
+            //æ’åºæ–°æ•°ç»„
             _tmp.sort(function(a,b){
                 return a>b?1:-1;
             });
-            //ÅÅĞòºóµÄ´ødomµÄËØ×é
+            //æ’åºåçš„å¸¦domçš„ç´ ç»„
             for(;_n<_tmp.length;_n++){
                  var _s=0;
                 for(;_s<_arrySort.length;_s++)
@@ -105,7 +105,7 @@
             }
            return _tmp;
         },
-        //Ìí¼ÓÔªËØ
+        //æ·»åŠ å…ƒç´ 
         addElement:function(){
             var _obj = document.createElement(_st.type);
             _obj.id =_st.id;
@@ -124,7 +124,7 @@
             mousedown:function(ev) {
                 ev = ev || ev.event;
                 ev.preventDefault();
-                //ÔªËØÀàĞÍdiv
+                //å…ƒç´ ç±»å‹div
                 _st.type="span";
                 _st.id = "maskBox";
                 _st.width = this.offsetWidth + "px";
@@ -151,7 +151,7 @@
             }
 
         },
-        //ÕıÈ·¼ì²é ¶Ô±ÈÁ½¸öÊı×é
+        //æ­£ç¡®æ£€æŸ¥ å¯¹æ¯”ä¸¤ä¸ªæ•°ç»„
         gameCheck:function(){
             var s= 0,bols=true;
             var _arry=this.sortObj.rightlist;
@@ -174,17 +174,17 @@
              var box_index=0;
             for(;i<olen;){
                     (function(n){
-                        //°´ÏÂÊó±ê
+                        //æŒ‰ä¸‹é¼ æ ‡
                         _obj[n].addEventListener("mousedown",function(e){
                             var _this=this;
                             m.mousedown.call(_this,e);
                             _st.background=_this.style.background;
                             _this.style.background="#FFF";
-                            //Éú³É¿ÉÒÆ¶¯µÄdiv
+                            //ç”Ÿæˆå¯ç§»åŠ¨çš„div
                             var _newObj=that.addElement();
                             _sg.boxObj.appendChild(_newObj);
                             _newObj.style.opacity=_sg.opacity;
-                            //ÒÆ¶¯Î»ÖÃ
+                            //ç§»åŠ¨ä½ç½®
                             _newObj.onmousemove=function(e){
                                 m.mousemove.call(_newObj,e);
                                // console.log("____"+this.offsetLeft);
@@ -197,11 +197,11 @@
                                     var _top=_obj[_i].offsetTop;
                                     var _boxX=parseInt(this.style.left);
                                     var _boxY=parseInt(this.style.top);
-                                    //»¹Ô­ÑùÊ½
+                                    //è¿˜åŸæ ·å¼
                                     eachBox(_obj,function(d){
                                         _obj[d].style.opacity=1.0;
                                     });
-                                    //¼ÆËãÍÏ¶¯µ½µÄÎ»ÖÃ
+                                    //è®¡ç®—æ‹–åŠ¨åˆ°çš„ä½ç½®
                                     if(_left+_w>_boxX||_left>_boxX+_w)
                                     {
                                         if(_top+_h>_boxY||_top>_boxY+_h)
@@ -214,33 +214,33 @@
                                     }
                                 }
                             };
-                            //Êó±êËÉ¿ª
+                            //é¼ æ ‡æ¾å¼€
                             _newObj.addEventListener("mouseup",function(e){
-                               //É¾³ıÒÆ¶¯ÊÂ¼ş
+                               //åˆ é™¤ç§»åŠ¨äº‹ä»¶
                                 _newObj.onmousemove=function(e){};
-                                //»ñÈ¡µ±Ç°Í£ÁôÔªËØµÄ×ø±ê
+                                //è·å–å½“å‰åœç•™å…ƒç´ çš„åæ ‡
                                 var tagObj={
                                     id1:_obj[box_index].id,
                                     id2: _this.id,
                                     bg1:_obj[box_index].style.background,
                                     bg2:this.style.background
                                 };
-                                //½»»»Î»ÖÃ
+                                //äº¤æ¢ä½ç½®
                                 _this.id=tagObj.id1;
                                 _this.style.background=tagObj.bg1;
                                 _obj[box_index].id=tagObj.id2;
                                 _obj[box_index].style.background=tagObj.bg2;
-                                //»ñÈ¡ÍÏ¶¯ºóµÄÅÅĞò
+                                //è·å–æ‹–åŠ¨åçš„æ’åº
                                  that.sortObj.romdlist=_obj;
-                                //»¹Ô­ÑùÊ½
+                                //è¿˜åŸæ ·å¼
                                 eachBox(_obj,function(d){
                                     _obj[d].style.opacity=1.0;
                                 });
-                                //É¾³ı¸¡¶¯div
+                                //åˆ é™¤æµ®åŠ¨div
                                 m.mouseup.call(_newObj,e);
-                                //¼ÆËãÊÇ·ñÍê³ÉÆ´Í¼
+                                //è®¡ç®—æ˜¯å¦å®Œæˆæ‹¼å›¾
                                 if(that.gameCheck()){
-                                    alert("O(¡É_¡É)O¹ş¹ş~");
+                                    alert("O(âˆ©_âˆ©)Oå“ˆå“ˆ~");
                                 }
                             },false);
 
@@ -252,9 +252,9 @@
 
         }
     }
-    //Ëæ»úÊı
+    //éšæœºæ•°
     function randomsort(a, b) {
-        return Math.random()>.5 ? -1 : 1;//ÓÃMath.random()º¯ÊıÉú³É0~1Ö®¼äµÄËæ»úÊıÓë0.5±È½Ï£¬·µ»Ø-1»ò1
+        return Math.random()>.5 ? -1 : 1;//ç”¨Math.random()å‡½æ•°ç”Ÿæˆ0~1ä¹‹é—´çš„éšæœºæ•°ä¸0.5æ¯”è¾ƒï¼Œè¿”å›-1æˆ–1
     }
     function eachBox(obj,fn){
         var _s=0;
